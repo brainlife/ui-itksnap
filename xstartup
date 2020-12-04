@@ -1,0 +1,13 @@
+#!/bin/bash
+
+#should I do this on startvnc?
+vglclient &
+
+XFCE_PANEL_MIGRATE_DEFAULT=true startxfce4 &
+
+#install license
+mkdir -p "/root/.config/Massachusetts General Hospital"
+cp -r /usr/local/licensed-bin/TrackVis.conf "/root/.config/Massachusetts General Hospital"
+vglrun /usr/local/licensed-bin/trackvis `find /input -name *.trk` &
+
+sleep 3600
