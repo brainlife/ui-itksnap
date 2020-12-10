@@ -5,7 +5,7 @@ vglclient &
 
 XFCE_PANEL_MIGRATE_DEFAULT=true startxfce4 &
 
-sleep 5
+sleep 1
 
 vglrun itksnap \
   -g $INPUT_DIR/ashs/tse.nii.gz \

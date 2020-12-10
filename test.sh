@@ -1,3 +1,11 @@
+
+mkdir -p lib
+cp -av /usr/lib/x86_64-linux-gnu/libGL* lib
+cp -av /usr/lib/x86_64-linux-gnu/libEGL* lib
+cp -av /usr/lib/x86_64-linux-gnu/libnvidia* lib
+cp -av /usr/lib/x86_64-linux-gnu/libnvoptix* lib
+cp -r -av /usr/lib/x86_64-linux-gnu/vdpau lib
+
 echo "running vnc server"
 docker stop test
 docker rm test
@@ -5,20 +13,17 @@ docker rm test
 password=$RANDOM.$RANDOM.$RANDOM
 echo "password: $password"
 
-id=$(docker run -dP --runtime=nvidia \
-	-e LD_LIBRARY_PATH=/usr/lib/nvidia \
-	-v /usr/lib/nvidia-384:/usr/lib/nvidia:ro \
-	-v /usr/local/licensed-bin:/usr/local/licensed-bin:ro \
-	-v /tmp/.X11-unix:/tmp/.X11-unix:ro \
-	--name test \
+id=$(docker run -dP --gpus=all \
+	-e INPUT_DIR=/input \
 	-e X11VNC_PASSWORD=$password \
-	-v `pwd`/test:/input:ro \
-	brainlife/ui-trackvis)
+	-e LD_LIBRARY_PATH=/usr/lib/host \
+	-v /tmp/.X11-unix:/tmp/.X11-unix:ro \
+	-v `pwd`/lib:/usr/lib/host:ro \
+	-v `pwd`/testdata:/input:ro \
+	--name test \
+	brainlife/itksnap)
 hostport=$(docker port $id | cut -d " " -f 3)
 echo "container $id using $hostport"
-
-#-v "/usr/local/licensed-bin/config/":"/root/.config":ro \
-#-v "/usr/local/licensed-bin/config/Massachusetts General Hospital":"/root/.config/Massachusetts General Hospital":ro \
 
 WEBSOCK_PORT=0.0.0.0:11000
 hostname=$(hostname)

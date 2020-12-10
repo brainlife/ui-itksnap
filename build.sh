@@ -1,4 +1,7 @@
-docker build -t brainlife/ui-trackvis .
-if [ $? -eq 0 ]; then
-    docker push brainlife/ui-trackvis
-fi
+set -e
+set -x
+name=brainlife/itksnap
+tag=5.0.9
+docker build -t $name .
+docker tag $name $name:$tag 
+docker push $name:$tag
