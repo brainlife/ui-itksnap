@@ -11,7 +11,7 @@ RUN wget -O itksnap.tar.gz https://sourceforge.net/projects/itk-snap/files/itk-s
       tar xvzf itksnap.tar.gz && \
       rm itksnap.tar.gz
 
-ENV PATH=$PATH:itksnap-3.8.0-20190612-Linux-gcc64/bin/
+ENV PATH=$PATH:/itksnap-3.8.0-20190612-Linux-gcc64/bin/
 
 ADD virtualgl_2.6_amd64.deb /
 RUN dpkg -i /virtualgl_2.6_amd64.deb
