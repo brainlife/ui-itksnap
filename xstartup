@@ -3,7 +3,8 @@
 #should I do this on startvnc?
 vglclient &
 
-#XFCE_PANEL_MIGRATE_DEFAULT=true startxfce4 &
+#itksnap uses windows manager for various dialog - like freeview
+XFCE_PANEL_MIGRATE_DEFAULT=true startxfce4 &
 
 sleep 1
 
@@ -11,5 +12,13 @@ vglrun itksnap \
   -g $INPUT_DIR/ashs/tse.nii.gz \
   -s $INPUT_DIR/ashs/final/ashs_left_lfseg_corr_nogray.nii.gz \
   -l $INPUT_DIR/ashs/snaplabels.txt &
+pid=$!
+#echo $pid > /itksnap.pid
+
+#maximize
+sleep 5
+id=`wmctrl -pl | grep " $pid " | cut -f 1 -d " "`
+echo $id > /id.txt
+wmctrl -i -r $id -b add,fullscreen
 
 sleep 3600
