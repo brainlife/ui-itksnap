@@ -20,5 +20,7 @@ ADD startvnc.sh /
 ADD xstartup /root/.vnc/xstartup
 ENV USER=root X11VNC_PASSWORD=override
 
+ADD xfce4 /root/.config/xfce4
+
 CMD ["/startvnc.sh"]
 
