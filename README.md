@@ -4,9 +4,11 @@ Brainlife's ITK-SNAP viewer.
 We are not allowed to distribute ITK-SNAP software. The software itself must be mounted from the host.
 
 ### Authors
-- [Franco Pestilli](pestilli@utexas.edu)
+- [Giulia Bertò](giulia.berto.4@gmail.com)
+- [Soichi Hayashi](soichih@gmail.com)
 
 ### Contributors
+- [Sophia Vinci-Booher](svincibooher@gmail.com)
 - [Franco Pestilli](pestilli@utexas.edu)
 
 ### Funding Acknowledgement
