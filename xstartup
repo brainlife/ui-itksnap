@@ -5,9 +5,11 @@ vglclient &
 
 XFCE_PANEL_MIGRATE_DEFAULT=true startxfce4 &
 
-#install license
-mkdir -p "/root/.config/Massachusetts General Hospital"
-cp -r /usr/local/licensed-bin/TrackVis.conf "/root/.config/Massachusetts General Hospital"
-vglrun /usr/local/licensed-bin/trackvis `find /input -name *.trk` &
+sleep 5
+
+vglrun itksnap \
+  -g $INPUT_DIR/ashs/tse.nii.gz \
+  -s $INPUT_DIR/ashs/final/ashs_left_lfseg_corr_nogray.nii.gz \
+  -l $INPUT_DIR/ashs/snaplabels.txt &
 
 sleep 3600
