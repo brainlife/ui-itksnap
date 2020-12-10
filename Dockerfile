@@ -5,10 +5,12 @@ RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y vim tigh
 
 EXPOSE 5900
 
-RUN apt-get install -y libjpeg62
+RUN apt-get install -y libjpeg62 libcurl3
 
 RUN wget -O itksnap.tar.gz https://sourceforge.net/projects/itk-snap/files/itk-snap/3.8.0/itksnap-3.8.0-20190612-Linux-x86_64.tar.gz/download
-RUN RUN tar -xzf itksnap.tar.gz -O /tiksnap && rm itksnap.tar.gz
+RUN tar xvzf itksnap.tar.gz && rm itksnap.tar.gz
+
+ENV PATH=$PATH:itksnap-3.8.0-20190612-Linux-gcc64/bin/
 
 ADD virtualgl_2.6_amd64.deb /
 RUN dpkg -i /virtualgl_2.6_amd64.deb
